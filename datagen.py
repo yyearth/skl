@@ -36,11 +36,15 @@ def linscale(d, range_, round_=2):
 
 
 class DataGen(object):
+    """
+
+    """
     __tmpdata = []
     WIDTH = 600
     HEIGHT = 600
 
     def __init__(self, dim=2, data=None):
+
         self.dim = dim
         self.data = data
 
@@ -62,7 +66,7 @@ class DataGen(object):
 
         self.data = []
 
-        d = np.random.rand(n, dim)
+        d = np.random.normal(loc=0.0, scale=1.0, size=(n, dim))
         self.data = linscale(d, range_)
 
         return self.data
@@ -120,7 +124,7 @@ class DataGen(object):
 
 if __name__ == '__main__':
     dg = DataGen()
-    d = dg.gen(4, 3, [[1, 2], [10, 20], [12, 13]])
+    d = dg.gen(30000, 2, [[-5, 5], [-5, 5]])
     # d = dg.gen2d()
     print(d)
     # dg.save()

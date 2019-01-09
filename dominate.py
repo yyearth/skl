@@ -5,7 +5,7 @@ def dominate(p, q):
 
     :param p: iterable.
     :param q: iterable.
-    :return: True/False
+    :return: True or False
     """
     ltflag = False
     assert len(p) == len(q), 'Dimension must be equal.'
