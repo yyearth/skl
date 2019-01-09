@@ -8,12 +8,13 @@ import time
 # 3.4.3 cv
 # 1.15.1 numpy
 
-def linscale(d, range_):
+def linscale(d, range_, round_=2):
     """
-    Linear scaling.
+    Linear scaling. 线性缩放。
     :param d: data number in range between 0 to 1.
     :param range_: scale in each dimension.
     :return: scaled data.
+    :param round_: round digit.
     """
     # assert len(d) == len(range_)
     m = np.array([])
@@ -31,7 +32,7 @@ def linscale(d, range_):
             m = np.concatenate((m, mul), axis=1)
             a = np.concatenate((a, add), axis=1)
 
-    return np.round(m * d + a, 1)
+    return np.round(m * d + a, round_)
 
 
 class DataGen(object):
@@ -122,4 +123,4 @@ if __name__ == '__main__':
     d = dg.gen(4, 3, [[1, 2], [10, 20], [12, 13]])
     # d = dg.gen2d()
     print(d)
-    dg.save()
+    # dg.save()
