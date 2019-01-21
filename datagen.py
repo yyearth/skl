@@ -81,8 +81,8 @@ class DataGen(object):
     def gen2d(self, n=None, range_=None):
         """
         Generate 2-dim data with cursor.
-        :param n: number of point.
-        :param range_: Range of X and Y.
+        :param n: number of point. default: infinite
+        :param range_: Range of X and Y. default: [[0, 10], [0, 10]]
         :return: generated data.
         """
 
@@ -111,9 +111,9 @@ class DataGen(object):
 
     def save(self, name=None):
         if name is None:
-            name = './data{}.txt'.format(time.strftime('%Y%m%d%H%M%S', time.localtime(time.time())))
+            name = './data{}.csv'.format(time.strftime('%Y%m%d%H%M%S', time.localtime(time.time())))
 
-        np.savetxt(name, self.data)
+        np.savetxt(name, self.data, delimiter=',')
 
     def load(self):
         pass
@@ -123,8 +123,16 @@ class DataGen(object):
 
 
 if __name__ == '__main__':
-    dg = DataGen()
-    d = dg.gen(30000, 2, [[-5, 5], [-5, 5]])
+
+    print('cv2 version:', cv2.__version__)
+    # dg = DataGen()
+    # d = dg.gen(30000, 2, [[-5, 5], [-5, 5]])
     # d = dg.gen2d()
-    print(d)
+    # print(d)
     # dg.save()
+
+    dg = DataGen(2)
+    data = dg.gen2d()
+    print(dg.data)
+    dg.save()
+
